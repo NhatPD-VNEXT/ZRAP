@@ -1,0 +1,81 @@
+managed implementation in class zbp_i_mf003_1_vn unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_MF003_1_VN alias _Invoice
+persistent table zmf003t_1_vn
+draft table zmf003t_1_d_vn
+lock master
+total etag LastChangedAt
+authorization master ( global, instance )
+etag master LocalLastChangedAt
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) InvoiceId, LocalCreatedAt, LocalCreatedBy, LastChangedAt, LocalLastChangedAt, LocalLastChangedBy;
+
+  field ( mandatory ) InvoiceNo;
+  association _Detail { create; with draft; }
+
+  field ( numbering : managed ) InvoiceId;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zmf003t_1_vn corresponding
+    {
+      InvoiceNo          = invoice_no;
+      InvoiceId          = invoice_id;
+      PostingDate        = posting_date;
+      LocalCreatedAt     = local_created_at;
+      LocalCreatedBy     = local_created_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LastChangedAt      = last_changed_at;
+    }
+}
+
+define behavior for ZI_MF003_2_VN alias _Detail
+persistent table zmf003t_2_vn
+draft table zmf003t_2_d_vn
+lock dependent by _Invoice
+authorization dependent by _Invoice
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) InvoiceUuitem, InvoiceId, InvoiceNo;
+  association _Invoice;
+
+  field ( numbering : managed ) InvoiceUuitem;
+
+  // Determinations for data handling
+  determination createData on modify { create; }
+
+  mapping for zmf003t_2_vn corresponding
+    {
+      InvoiceUuitem         = invoice_uuitem;
+      InvoiceId             = invoice_id;
+      InvoiceNo             = invoice_no;
+      InvoiceItem           = invoice_item;
+      zzvcdid               = zzvcdid;
+      zzvctxt               = zzvctxt;
+      Supplier              = supplier;
+      SupplierName          = SupplierName;
+      Purchaseordercurrency = purchaseordercurrency;
+      Amountexpense         = amountexpense;
+      Taxcode               = taxcode;
+      Itemtext              = itemtext;
+      Headertext            = headertext;
+      LocalCreatedAt        = local_created_at;
+      LocalCreatedBy        = local_created_by;
+      LocalLastChangedAt    = local_last_changed_at;
+      LocalLastChangedBy    = local_last_changed_by;
+      LastChangedAt         = last_changed_at;
+    }
+}

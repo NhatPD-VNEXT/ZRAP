@@ -1,0 +1,44 @@
+managed implementation in class zcl_i_mf002_02_vn unique;
+strict ( 2 );
+
+define behavior for ZI_MF002_02_VN alias _detail
+persistent table zmf002t_02_vn
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly : update ) Referencedocumentitem, Supplier, Supplierfullname, Zzvctxt, Taxcode, Referencedocument;
+
+  field ( numbering : managed )
+  Referencedocumentitem;
+
+  determination createData on modify { create; update; }
+  determination deleteData on modify { delete; }
+
+  action Allocate_01;
+  action Allocate_02;
+
+
+  mapping for zmf002t_02_vn corresponding
+    {
+      Referencedocument     = referencedocument;
+      Referencedocumentitem = referencedocumentitem;
+      Zzvcdid               = zzvcdid;
+      Zzvctxt               = zzvctxt;
+      Supplier              = supplier;
+      Supplierfullname      = supplierfullname;
+      Purchaseordercurrency = purchaseordercurrency;
+      Amountexpense         = amountexpense;
+      Taxcode               = taxcode;
+      Headertext            = headertext;
+      Itemtext              = itemtext;
+      LocalCreatedAt        = local_created_at;
+      LocalCreatedBy        = local_created_by;
+      LocalLastChangedAt    = local_last_changed_at;
+      LocalLastChangedBy    = local_last_changed_by;
+      LastChangedAt         = last_changed_at;
+    }
+}

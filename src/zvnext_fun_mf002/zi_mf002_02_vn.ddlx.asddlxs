@@ -1,0 +1,63 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: {
+    typeName: 'Detail Information',
+    typeNamePlural: 'Detail Information'
+  }
+}
+annotate entity ZI_MF002_02_VN with
+{
+  @UI.facet: [ { id: 'idIdentification', type: #IDENTIFICATION_REFERENCE, label: '明細情報', position: 10}]
+  @UI.lineItem      : [{ position: 10 },
+                       { type: #FOR_ACTION, dataAction: 'Allocate_01', label: '数量按分'},
+                       { type: #FOR_ACTION, dataAction: 'Allocate_02', label: '金額按分' }
+                       ]
+  @UI.selectionField: [{ position: 10 }]
+  @EndUserText.label: 'Invoice明細No'
+  ReferencedocumentNo;
+  @UI.identification: [{ position: 30 }]
+  @UI.lineItem      : [{ position: 30 }]
+  @EndUserText.label: '諸掛区分'
+  @Consumption.valueHelpDefinition: [{ entity:{ name: 'ZI_MF002_VH_01_VN', element: 'Zzvcdid' },
+               useForValidation: true,
+               additionalBinding: [{ localElement: 'Zzvctxt', element: 'Zzvctxt', usage: #RESULT },
+                                   { localElement: 'Taxcode', element: 'Taxcode', usage: #RESULT  }] }]
+
+  //  @Consumption.valueHelpDefinition: [{ entity:{ name: 'ZI_MF002_VH_01_VN', element: 'Zzvcdid' }}]
+  //  @UI.textArrangement: #TEXT_LAST
+  //  @UI.selectionField: [{ position: 10 }]
+  //  @Consumption.filter: { selectionType: #SINGLE, multipleSelections: true }
+  //  @Consumption.derivation: { lookupEntity: 'ZI_MF002_VH_01_VN', resultElement: 'Zzvcdid',
+  //                             binding: [{ targetElement: 'Zzvcdid', type: #CONSTANT, value: '10' },
+  //                                       { targetElement: 'Zzvcdid', type: #CONSTANT, value: '20' }] }
+  Zzvcdid;
+  @UI.lineItem      : [{ position: 40 }]
+  //  @UI.identification: [{ position: 40 }]
+  @EndUserText.label: '諸掛区分名称'
+  Zzvctxt;
+  @UI.lineItem      : [{ position: 50 }]
+  Supplier;
+  @UI.lineItem      : [{ position: 60 }]
+  @EndUserText.label: 'サプライヤ名'
+  Supplierfullname;
+  @UI.lineItem      : [{ position: 70 }]
+  @EndUserText.label: '諸掛計上按分金額'
+  Amountexpense;
+  @UI.identification: [{ position: 70 }]
+  @EndUserText.label: '諸掛計上按分金額'
+  Amountexpense_num;
+  @UI.lineItem      : [{ position: 80 }]
+  @UI.identification: [{ position: 80 }]
+  @EndUserText.label: '税コード'
+  Taxcode;
+  @UI.lineItem      : [{ position: 90 }]
+  @UI.identification: [{ position: 90 }]
+  @EndUserText.label: '伝票ヘッダテキスト'
+  Headertext;
+  @UI.lineItem      : [{ position: 100 }]
+  @UI.identification: [{ position: 100 }]
+  @EndUserText.label: '明細テキスト'
+  Itemtext;
+
+}

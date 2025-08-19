@@ -1,0 +1,65 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Import Expense',
+    typeNamePlural: 'Import Expense'
+  }
+}
+annotate entity ZI_MF006_01 with
+{
+  @UI.facet: [ { id: 'idIdentification', type: #IDENTIFICATION_REFERENCE, label: 'ヘッダ情報', position: 10, targetQualifier: 'idIdentification'},
+               { id: 'idDetail', type: #LINEITEM_REFERENCE, label: '明細情報', position: 20, targetElement: '_detail' },
+//               { id: 'idAllocate', type: #LINEITEM_REFERENCE, label: '按分結果', position: 30, targetElement: '_allocate' },
+               { position: 40, id: 'idAdminData', type: #FIELDGROUP_REFERENCE, purpose: #STANDARD, label: '管理者情報', targetQualifier: 'idAdminData'}]
+
+  @UI.identification: [{ position: 10, qualifier: 'idIdentification' }]
+  @UI.lineItem      : [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  ReferenceDocument;
+
+
+  @UI.lineItem      : [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  CreationDate;
+
+//  @UI.identification: [{ position: 20, qualifier: 'idIdentification' }]
+//  @EndUserText.label: '登録日付'
+//  creationdatelog;
+
+  @UI.lineItem      : [{ position: 30 }]
+  CreationTime;
+
+  @UI.identification: [{ position: 40, qualifier: 'idIdentification' }]
+  @UI.lineItem      : [{ position: 40 }]
+  @UI.selectionField: [{ position: 40 }]
+  PostingDate;
+
+  @UI.lineItem      : [{ position: 50 }]
+  @UI.selectionField: [{ position: 50 }]
+  CreatedByUser;
+
+  @UI.lineItem      : [{ position: 60 }]
+  Supplier;
+
+  @UI.lineItem      : [{ position: 70 }]
+  SupplierFullName;
+
+  @UI.lineItem      : [{ position: 80 }]
+  Material;
+
+//  @UI.lineItem      : [{ position: 90 }]
+//  productdescription;
+//
+//  @UI.lineItem      : [{ position: 100 }]
+//  QuantityInEntryUnit;
+//
+//  @UI.fieldGroup: [{ qualifier: 'idAdminData', position: 10 }]
+//  localcreatedby;
+//  @UI.fieldGroup: [{ qualifier: 'idAdminData', position: 20 }]
+//  localcreatedat;
+//  @UI.fieldGroup: [{ qualifier: 'idAdminData', position: 30 }]
+//  locallastchangedby;
+//  @UI.fieldGroup: [{ qualifier: 'idAdminData', position: 40 }]
+//  locallastchangedat;
+
+}

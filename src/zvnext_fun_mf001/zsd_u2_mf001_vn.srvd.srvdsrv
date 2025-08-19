@@ -1,0 +1,7 @@
+@EndUserText.label: 'Service definition MF001'
+define service ZSD_U2_MF001_VN {
+  expose ZC_MF001_01_VN;
+  expose ZC_MF001_02_VN;
+  expose ZC_MF001_05_VN;
+  expose ZR_MF001_06_VN;
+}

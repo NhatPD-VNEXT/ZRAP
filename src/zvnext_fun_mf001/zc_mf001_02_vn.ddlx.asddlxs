@@ -1,0 +1,58 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Detail Information',
+    typeNamePlural: 'Detail Information'
+  }
+}
+
+annotate entity ZC_MF001_02_VN with
+{
+  @UI.facet: [ { id: 'idIdentification', type: #IDENTIFICATION_REFERENCE, label: 'Detail Information', position: 10}]
+  @UI.identification: [{ position: 10 }]
+  @UI.lineItem      : [{ position: 10 },
+                       { type: #FOR_ACTION, dataAction: 'Allocate_01', label: 'Allocate Quantity'}]
+  @UI.selectionField: [{ position: 10 }]
+  @EndUserText.label: 'Reference Document'
+  Referencedocument;
+  @UI.lineItem      : [{ position: 20 },
+                      { type: #FOR_ACTION, dataAction: 'Allocate_02', label: 'Allocate Amount'}]
+  @UI.identification: [{ position: 20 }]
+  @EndUserText.label: 'Referencedocumentitem'
+  Referencedocumentitem;
+  @UI.identification: [{ position: 30 }]
+  @UI.lineItem      : [{ position: 30 }]
+  @EndUserText.label: 'Expense Category '
+  @Consumption.valueHelpDefinition: [{ entity:{ name: 'ZI_MF001_04_VN', element: 'Zzvcdid' },
+               additionalBinding: [{ localElement: 'Zzvctxt', element: 'Zzvctxt', usage: #RESULT },
+                                   { localElement: 'Taxcode', element: 'Taxcode', usage: #RESULT  }] }]
+  Zzvcdid;
+  @UI.lineItem      : [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
+  @EndUserText.label: 'Expense Category'
+  Zzvctxt;
+  @UI.lineItem      : [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
+  @EndUserText.label: 'Supplier'
+  Supplier;
+  @UI.lineItem      : [{ position: 60 }]
+  @UI.identification: [{ position: 60 }]
+  @EndUserText.label: 'Supplierfullname'
+  Supplierfullname;
+  @UI.lineItem      : [{ position: 70 }]
+  @UI.identification: [{ position: 70 }]
+  @EndUserText.label: 'Amountexpense'
+  Amountexpense;
+  @UI.lineItem      : [{ position: 80 }]
+  @UI.identification: [{ position: 80 }]
+  @EndUserText.label: 'Taxcode'
+  Taxcode;
+  @UI.lineItem      : [{ position: 90 }]
+  @UI.identification: [{ position: 90 }]
+  @EndUserText.label: 'Headertext'
+  Headertext;
+  @UI.lineItem      : [{ position: 100 }]
+  @UI.identification: [{ position: 100 }]
+  @EndUserText.label: 'Itemtext'
+  Itemtext;
+}

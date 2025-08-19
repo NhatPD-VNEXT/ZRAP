@@ -1,0 +1,36 @@
+managed implementation in class zcl_r_fr003_d_vn unique;
+strict ( 2 );
+
+define behavior for ZR_FR003_D_VN alias _detail
+persistent table zfr003_d_vn
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) KeyUuid;
+  field ( numbering : managed )
+  keyUUID;
+
+  //  action ( features : instance ) Edit;
+  action ( features : instance ) Edit parameter ZR_FR003_para_edit result [1] $self;
+
+  mapping for zfr003_d_vn
+    {
+      KeyUuid                     = key_uuid;
+      companycode                 = companycode;
+      fiscalyear                  = fiscalyear;
+      Postingdate                 = Postingdate;
+      accountingdocument          = accountingdocument;
+      rootaccountingdocument      = rootaccountingdocument;
+      glaccount                   = glaccount;
+      offsettingaccount           = offsettingaccount;
+      companycodecurrency         = companycodecurrency;
+      amountintransactioncurrency = amountintransactioncurrency;
+      costcenter                  = costcenter;
+      taxcode                     = taxcode;
+      Message                     = message;
+    }
+}

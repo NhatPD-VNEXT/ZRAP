@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition F2335'
+define service ZSD_F2335 {
+  expose ZC_F2335 as F2335;
+}

@@ -1,0 +1,44 @@
+managed implementation in class zcl_i_mf002_03_vn unique;
+strict ( 2 );
+
+define behavior for ZI_MF002_03_VN alias _allocate
+persistent table zmf002t_03_vn
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly : update )
+  Materialdocumentyear, Materialdocument, Materialdocumentitem, Referencedocumentitem,
+  Referencedocument, Material, Zzvcdid, Zzvctxt, Entryunit, Quantityinentryunit, Companycodecurrency,
+  Totalgoodsmvtamtincccrcy, Messagelog;
+
+  action Create;
+  action Cancel;
+
+  mapping for zmf002t_03_vn corresponding
+    {
+      Materialdocument         = materialdocument;
+      Materialdocumentitem     = materialdocumentitem;
+      Materialdocumentyear     = materialdocumentyear;
+      Referencedocumentitem    = referencedocumentitem;
+      Referencedocument        = referencedocument;
+      Material                 = material;
+      Zzvcdid                  = zzvcdid;
+      Zzvctxt                  = zzvctxt;
+      Entryunit                = entryunit;
+      Quantityinentryunit      = quantityinentryunit;
+      Companycodecurrency      = companycodecurrency;
+      Totalgoodsmvtamtincccrcy = totalgoodsmvtamtincccrcy;
+      Purchaseordercurrency    = purchaseordercurrency;
+      Amountexpense            = amountexpense;
+      Messagelog               = messagelog;
+      LocalCreatedAt           = local_created_at;
+      LocalCreatedBy           = local_created_by;
+      LocalLastChangedAt       = local_last_changed_at;
+      LocalLastChangedBy       = local_last_changed_by;
+      LastChangedAt            = last_changed_at;
+    }
+}

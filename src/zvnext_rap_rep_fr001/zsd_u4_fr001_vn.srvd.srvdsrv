@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition FR001'
+define service ZSD_U4_FR001_VN {
+  expose ZI_FR001_VN;
+}

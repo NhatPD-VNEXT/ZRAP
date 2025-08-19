@@ -1,0 +1,27 @@
+managed implementation in class zcl_r_mf002_log_vn unique;
+strict ( 2 );
+
+define behavior for ZR_MF002_LOG_VN alias _log
+persistent table zmf002t_01_vn
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  //  field ( readonly ) Referencedocument;
+
+  mapping for zmf002t_01_vn corresponding
+    {
+      Referencedocument  = referencedocument;
+      Postingdate        = postingdate;
+      Creationdate       = Creationdate;
+      Status             = status;
+      LocalCreatedAt     = local_created_at;
+      LocalCreatedBy     = local_created_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LastChangedAt      = last_changed_at;
+    }
+}

@@ -1,0 +1,21 @@
+managed implementation in class zcl_r_fr003_h_vn unique;
+strict ( 2 );
+
+define behavior for ZR_FR003_H_VN alias _header
+persistent table zfr003_h_vn
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  //  create;
+  update;
+  //  delete;
+  field ( readonly ) CompanyCode, FiscalYear, AccountingDocument;
+  action ( features : instance ) Allocate deep parameter ZR_FR003_ACTION_PARA;
+  action ( features : instance ) Post;
+  action ( features : instance ) Reverse;
+
+  side effects
+  { action Allocate affects entity _detail;
+    action Post affects entity _detail; }
+}

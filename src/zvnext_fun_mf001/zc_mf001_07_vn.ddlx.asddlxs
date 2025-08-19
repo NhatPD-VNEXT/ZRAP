@@ -1,0 +1,71 @@
+@Metadata.layer: #CUSTOMER
+
+@UI: {
+  headerInfo: {
+    typeName: 'Allocation Result',
+    typeNamePlural: 'Allocation Result'
+  }
+}
+annotate entity ZC_MF001_07_VN with
+{
+  @UI.facet: [ { id: 'idIdentification', type: #IDENTIFICATION_REFERENCE, label: 'Allocation Result', position: 10}]
+  @UI.identification: [{ position: 10 }]
+  @UI.lineItem      : [{ position: 10 }]
+  Materialdocumentyear;
+  @UI.identification: [{ position: 20 }]
+  @UI.lineItem      : [{ position: 20 }]
+  Materialdocument;
+  @UI.identification: [{ position: 30 }]
+  @UI.lineItem      : [{ position: 30 }]
+  Materialdocumentitem;
+  @UI.identification: [{ position: 40 }]
+  @UI.lineItem      : [{ position: 40 }]
+  Referencedocumentitem;
+  @UI.identification: [{ position: 50 }]
+  @UI.lineItem      : [{ position: 50 }]
+  Referencedocument;
+  @UI.identification: [{ position: 60 }]
+  @UI.lineItem      : [{ position: 60 }]
+  Deliverydocument;
+  @UI.identification: [{ position: 70 }]
+  @UI.lineItem      : [{ position: 70 }]
+  Deliverydocumentitem;
+  @UI.identification: [{ position: 80 }]
+  @UI.lineItem      : [{ position: 80 }]
+  Companycode;
+  @UI.identification: [{ position: 90 }]
+  @UI.lineItem      : [{ position: 90 }]
+  Material;
+  @UI.identification: [{ position: 100 }]
+  @UI.lineItem      : [{ position: 100 }]
+  Materialdescription;
+  @UI.identification: [{ position: 110 }]
+  @UI.lineItem      : [{ position: 110 }]
+  Entryunit;
+  @UI.identification: [{ position: 120 }]
+  @UI.lineItem      : [{ position: 120 }]
+  Quantityinentryunit;
+  @UI.identification: [{ position: 130 }]
+  @UI.lineItem      : [{ position: 130 }]
+  Zzvcdid;
+  @UI.identification: [{ position: 140 }]
+  @UI.lineItem      : [{ position: 140 }]
+  Zzvctxt;
+  @UI.identification: [{ position: 150 }]
+  @UI.lineItem      : [{ position: 150 }]
+  Totalgoodsmvtamtincccrcy;
+  @UI.identification: [{ position: 160 }]
+  @UI.lineItem      : [{ position: 160 }]
+  Companycodecurrency;
+  @UI.identification: [{ position: 170 }]
+  @UI.lineItem      : [{ position: 170 }]
+  Purchaseordercurrency;
+  @UI.identification: [{ position: 180 }]
+  @UI.lineItem      : [{ position: 180 }]
+  Amountexpense;
+  @UI.identification: [{ position: 190 }]
+  @UI.lineItem      : [{ position: 190 }]
+  Messagelog;
+
+
+}

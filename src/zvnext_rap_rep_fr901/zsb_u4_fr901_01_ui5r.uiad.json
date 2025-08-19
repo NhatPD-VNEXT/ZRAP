@@ -1,0 +1,40 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "会計伝票分割",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "会計伝票分割"
+  },
+  "ui5AppDetails": {
+    "appId": "zsbu4fr90101"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_BB59A160A73CC1E0FCCFF9C88ACF434EF602E3FB_TM",
+    "semanticObject": "ZSB_U4_FR901_01",
+    "action": "Post",
+    "desktop": true,
+    "tablet": true,
+    "phone": true,
+    "parameters": [
+      {
+        "name": "CompanyCode",
+        "defaultValue": "%%UserDefault.extended.CompanyCode%%"
+      }
+    ]
+  },
+  "tiles": [
+    {
+      "id": "UI5R_BB59A160A73CC1E0FCCFF9C88ACF434EF602E3FB_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "会計伝票分割"
+      }
+    }
+  ]
+}

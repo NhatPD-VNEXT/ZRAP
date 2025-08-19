@@ -1,0 +1,7 @@
+@EndUserText.label: 'ZSD_MF003_01_VN'
+define service ZSD_MF003_01_VN {
+  expose ZC_MF003_01_VN    as Invoice;
+  expose ZC_MF003_02_VN    as Detail;
+  expose ZC_MF003_03_VN    as Allocate;
+  expose ZI_MF003_04_VH_VN as Help;
+}

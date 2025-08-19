@@ -1,0 +1,21 @@
+unmanaged implementation in class zcl_i_mf002_01_vn unique;
+strict ( 2 );
+
+define behavior for ZI_MF002_01_VN alias _header
+lock master
+//total etag Referencedocument
+authorization master ( instance )
+{
+  create;
+  update;
+  delete;
+  association _detail { create; }
+//  field ( readonly ) MaterialDocumentYear, MaterialDocument, MaterialDocumentItem, ReferenceDocument;
+
+  factory action Create1 [1];
+  //  action Create1 result [1] $self;
+  side effects
+  {
+    entity _detail affects entity _allocate;
+  }
+}

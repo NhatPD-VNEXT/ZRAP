@@ -1,0 +1,85 @@
+@Metadata.layer: #CORE
+@UI.createHidden: true
+@UI: {
+  headerInfo: {
+    typeName: 'Allocation Result',
+    typeNamePlural: 'Allocation Result'
+  } }
+
+annotate entity ZC_MF003_03_VN with
+{
+  @UI.facet: [ { id: 'idIdentification', type: #IDENTIFICATION_REFERENCE, label: '按分結果', position: 10}]
+  @UI.lineItem      : [{ position: 10, importance: #HIGH },
+                       { type: #FOR_ACTION, dataAction: 'Create', label: '登録', importance: #HIGH, invocationGrouping: #CHANGE_SET}]
+  @EndUserText.label: 'Invoice明細No'
+  InvoiceItem;
+  @UI.lineItem      : [{ position: 20, importance: #HIGH },
+                       { type: #FOR_ACTION, dataAction: 'Cancel', label: '取消'}]
+  @EndUserText.label: '入出庫伝票'
+  Materialdocument;
+
+  @UI.lineItem      : [{ position: 30, importance: #HIGH }]
+  @EndUserText.label: '入出庫明細'
+  Materialdocumentitem;
+
+  @UI.lineItem      : [{ position: 40, importance: #HIGH }]
+  @EndUserText.label: '発注伝票'
+  PurchaseOrder;
+
+  @UI.lineItem      : [{ position: 50, importance: #HIGH }]
+  @EndUserText.label: '発注伝票明細'
+  PurchaseOrderItem;
+
+  @UI.lineItem      : [{ position: 60, importance: #HIGH }]
+  @EndUserText.label: '会社コード'
+  Companycode;
+
+  @UI.lineItem      : [{ position: 70, importance: #HIGH }]
+  @EndUserText.label: '品目'
+  Product;
+
+  @UI.lineItem      : [{ position: 80, importance: #HIGH }]
+  @EndUserText.label: '品目テキスト'
+  ProductName;
+
+  @UI.lineItem      : [{ position: 90, importance: #HIGH }]
+  @EndUserText.label: '数量（入力単位）'
+  Quantityinentryunit;
+
+  //  @UI.lineItem      : [{ position: 30 }]
+  //  @EndUserText.label: '単位（入力単位）'
+  //  Entryunit;
+
+  @UI.lineItem      : [{ position: 110, importance: #HIGH }]
+  @EndUserText.label: '金額'
+  Totalgoodsmvtamtincccrcy;
+
+  //  @UI.lineItem      : [{ position: 30 }]
+  //  @EndUserText.label: '通貨'
+  //  Companycodecurrency;
+
+  @UI.lineItem      : [{ position: 130, importance: #HIGH }]
+  @EndUserText.label: '諸掛区分'
+  ExpensesCategoryID;
+
+  @UI.lineItem      : [{ position: 140, importance: #HIGH }]
+  @EndUserText.label: '諸掛計上按分金額'
+  Amountexpense;
+
+  //  @UI.identification: [{ position: 170 }]
+  //  @EndUserText.label: '通貨'
+  //  Purchaseordercurrency;
+
+  @UI.identification: [{ position: 160, importance: #HIGH }]
+  @EndUserText.label: '請求書照合番号'
+  Supplierinvoice;
+
+  @UI.identification: [{ position: 170, importance: #HIGH }]
+  @EndUserText.label: '請求書照合明細番号'
+  Supplierinvoiceitem;
+
+  @UI.identification: [{ position: 180, importance: #HIGH }]
+  @EndUserText.label: '処理メッセージ'
+  Messagelog;
+
+}

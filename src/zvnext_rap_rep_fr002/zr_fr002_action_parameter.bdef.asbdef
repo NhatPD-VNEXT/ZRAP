@@ -1,0 +1,10 @@
+abstract;
+strict ( 2 );
+with hierarchy;
+
+
+define behavior for ZR_FR002_ACTION_PARAMETER
+with control
+{
+  field ( mandatory : execute ) yy1_headre_field_001_sdh;
+}

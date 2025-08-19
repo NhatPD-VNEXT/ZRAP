@@ -1,0 +1,40 @@
+managed implementation in class zbp_i_ff901_02_vn unique;
+strict ( 2 );
+
+define behavior for ZI_FF901_02_VN alias _detail
+persistent table zf901t_vn
+lock master
+authorization master ( none )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly : update ) CompanyCode, FiscalYearBase, AccountingDocumentBase, AllocatedLineItem;
+
+  mapping for zf901t_vn
+    {
+      CompanyCode                  = company_code;
+      FiscalYearBase               = fiscal_year_base;
+      AccountingDocumentBase       = accounting_document_base;
+      AllocatedLineItem            = allocated_line_item;
+      FiscalYear                   = fiscal_year;
+      AccountingDocument           = accounting_document;
+      PostingDate                  = posting_date;
+      GlaccountS                   = glaccount_s;
+      GlaccountNameS               = glaccount_name_s;
+      GlaccountH                   = glaccount_h;
+      GlaccountNameH               = glaccount_name_h;
+      AmountingTransactionCurrency = amounting_transaction_currency;
+      CompanyCodeCurrency          = company_code_currency;
+      AllocateMonths               = allocate_months;
+      HeaderText                   = header_text;
+      LogMessage                   = log_message;
+      LogStatus                    = log_status;
+      CreatedAt                    = created_at;
+      CreatedBy                    = created_by;
+      LocalLastChangedAt           = local_last_changed_at;
+      LocalLastChangedBy           = local_last_changed_by;
+      LastChangedAt                = last_changed_at;
+    }
+}

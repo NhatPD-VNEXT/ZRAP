@@ -1,0 +1,5 @@
+@EndUserText.label: 'ZSD_U4_TEST_VN'
+define service ZSD_U4_TEST_VN {
+  expose ZC_TEST_CDS_VIEW_VN_01 as test;
+  expose ZI_TEST_CDS_VIEW_04    as Data;
+}

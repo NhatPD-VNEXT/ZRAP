@@ -1,0 +1,43 @@
+managed implementation in class zcl_r_mf001_06_vn unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZR_MF001_06_VN alias _zmf001t_02
+persistent table zmf001t_02
+draft table zmf001t_02_d
+with additional save
+authorization master ( instance, global )
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+{
+  create;
+  update;
+  delete;
+  field ( numbering : managed )
+  Referencedocumentitem;
+  //  field ( readonly ) Referencedocument, Referencedocumentitem, Materialdocumentyear, Materialdocument, Materialdocumentitem;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zmf001t_02 corresponding
+    {
+      Referencedocument     = referencedocument;
+      Referencedocumentitem = referencedocumentitem;
+      Materialdocument      = materialdocument;
+      Materialdocumentitem  = materialdocumentitem;
+      Materialdocumentyear  = materialdocumentyear;
+      Zzvcdid               = zzvcdid;
+      Zzvctxt               = zzvctxt;
+      Supplier              = supplier;
+      Supplierfullname      = supplierfullname;
+      Purchaseordercurrency = purchaseordercurrency;
+      Amountexpense         = amountexpense;
+      Taxcode               = taxcode;
+      Headertext            = headertext;
+      Itemtext              = itemtext;
+    }
+}

@@ -1,0 +1,14 @@
+managed implementation in class zcl_r_mf001_07_vn unique;
+strict ( 2 );
+
+define behavior for ZR_MF001_07_VN alias _zmf001t_03
+persistent table zmf001t_03
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+//  field ( readonly ) Materialdocumentyear, Materialdocument, Materialdocumentitem, Referencedocumentitem;
+}

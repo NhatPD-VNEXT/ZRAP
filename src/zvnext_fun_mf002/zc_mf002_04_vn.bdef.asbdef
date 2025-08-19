@@ -1,0 +1,11 @@
+projection;
+strict ( 2 );
+use side effects;
+
+define behavior for ZC_MF002_04_VN //alias <alias_name>
+{
+  //  use create;
+  use update;
+  use association _detail { create; }
+//  use action Create1;
+}

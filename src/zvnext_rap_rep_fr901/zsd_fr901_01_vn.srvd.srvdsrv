@@ -1,0 +1,5 @@
+@EndUserText.label: 'ZSD_FR901_01_VN'
+define service ZSD_FR901_01_VN {
+  expose ZC_FR901_03_VN as List;
+  expose ZI_FR901_02_VN as Detail;
+}

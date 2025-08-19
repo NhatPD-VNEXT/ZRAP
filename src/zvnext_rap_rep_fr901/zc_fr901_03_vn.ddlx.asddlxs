@@ -1,0 +1,87 @@
+@Metadata.layer: #CORE
+
+@UI: {
+    headerInfo: {
+        typeName: 'Accounting document list',
+//        typeNamePlural: 'Accounting document list',
+        title: {
+           type: #STANDARD, value: 'AccountingDocument'
+        }
+   }
+}
+
+annotate entity ZC_FR901_03_VN with
+{
+  @UI.facet: [ {
+       id: 'idIdentification',
+       type: #IDENTIFICATION_REFERENCE,
+       label: 'Test',
+       position: 10
+     },
+       {
+     label: 'Detail',
+     id: 'Data',
+     type: #LINEITEM_REFERENCE,
+     position: 20,
+     targetElement: '_Detail'
+  //     purpose: #STANDARD
+   }
+   ]
+  @UI.selectionField          : [{ position: 10 }]
+  @UI.identification          : [{ position: 10 }
+                              ,{ type: #FOR_ACTION, dataAction: 'Allocate', label: 'Allocate'},
+                               { type: #FOR_ACTION, dataAction: 'Post', label: 'Post', determining: true }]
+  @UI.lineItem                : [{ position: 10 }]
+  @Consumption.filter         : {mandatory: true, defaultValue: '1510', multipleSelections: true}
+  @EndUserText.label          : '会社コード'
+  @Consumption.valueHelpDefault: { display: true }
+  @Consumption.valueHelpDefinition: [
+    { entity:  { name:    'I_CompanyCodeStdVH',
+                 element: 'CompanyCode' }
+    }]
+  CompanyCode;
+  @UI.selectionField          : [{ position: 20 }]
+  @UI.lineItem                : [{ position: 20 }]
+  @EndUserText.label          : '会計年度'
+  @UI.identification          : [{ position: 20 }]
+  @Consumption.derivation: { lookupEntity: 'ZI_FF901_05_VN', resultElement: 'FiscalYear', 
+                             binding: [{ targetElement: 'FiscalYear', value: '2024' }] }
+  FiscalYear;
+  @UI.selectionField          : [{ position: 30 }]
+  @UI.lineItem                : [{ position: 30 }]
+  @EndUserText.label          : '転記日付'
+  @UI.identification          : [{ position: 30 }]
+  @Consumption.filter:{ selectionType: #INTERVAL, hidden: true }
+  PostingDate;
+  @UI.selectionField          : [{ position: 40 }]
+  @UI.lineItem                : [{ position: 40 }]
+  @EndUserText.label          : '仕訳'
+  AccountingDocument;
+  @UI.selectionField          : [{ position: 50 }]
+  @UI.lineItem                : [{ position: 50 }]
+  @Consumption.filter         : {mandatory: false, defaultValue: '0012561000'}
+  @EndUserText.label          : 'G/L勘定(借方)'
+  @Consumption.filter:{ hidden: true }
+  GLAccount;
+  @UI.lineItem                : [{ position: 60 }]
+  @EndUserText.label          : 'G/L勘定テキスト(借方)'
+  @Consumption.filter:{ hidden: true }
+  GLAccountName;
+  @UI.selectionField          : [{ position: 70 }]
+  @UI.lineItem                : [{ position: 70 }]
+  //  @Consumption.filter         : {mandatory: true, defaultValue: '0012561000'}
+  @EndUserText.label          : 'G/L勘定(借方)'
+  @UI.defaultValue: #( 'ELEMENT_OF_REFERENCED_ENTITY: OffsettingAccount' )
+  OffsettingAccount;
+  @UI.lineItem                : [{ position: 80 }]
+  @EndUserText.label          : 'G/L勘定テキスト(貸方)'
+  OffsettingAccountName;
+  @UI.lineItem                : [{ position: 90 }]
+  @EndUserText.label          : '金額(会社コード通貨)'
+  @UI.identification          : [{ position: 90 }]
+  AmountInCompanyCodeCurrency;
+  @UI.lineItem                : [{ position: 100 }]
+  @EndUserText.label          : '伝票ヘッダテキスト'
+  AccountingDocumentHeaderText;
+
+}

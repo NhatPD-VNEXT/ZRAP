@@ -1,0 +1,60 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Import Expense',
+    typeNamePlural: 'Import Expense'
+  }
+}
+annotate entity ZC_MF001_01_VN with
+{
+  @UI.facet: [ { id: 'idIdentification', type: #IDENTIFICATION_REFERENCE, label: 'Header Information', position: 10, targetQualifier: 'idIdentification'},
+
+               { id: 'idDetail', type: #LINEITEM_REFERENCE, label: 'Detail Information', position: 20, targetElement: '_detail' },
+                 { id: 'idAllocate', type: #LINEITEM_REFERENCE, label: 'Allocation Result', position: 30, targetElement: '_Allocate' },
+               { position: 40, id: 'idAdminData', type: #FIELDGROUP_REFERENCE, purpose: #STANDARD, label: 'Admin Data', targetQualifier: 'idAdminData'}]
+  @UI.identification: [{ position: 10, qualifier: 'idIdentification' }]
+  @UI.lineItem      : [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  Referencedocument;
+
+  @UI.identification: [{ position: 20, qualifier: 'idIdentification' }]
+  @UI.lineItem      : [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  Creationdate;
+
+  @UI.lineItem      : [{ position: 30 }]
+  Creationtime;
+
+  @UI.identification: [{ position: 40, qualifier: 'idIdentification' }]
+  @UI.lineItem      : [{ position: 40 }]
+  @UI.selectionField: [{ position: 40 }]
+  Postingdate;
+
+  @UI.lineItem      : [{ position: 50 }]
+  @UI.selectionField: [{ position: 50 }]
+  Createdbyuser;
+
+  @UI.lineItem      : [{ position: 60 }]
+  Supplier;
+
+  @UI.lineItem      : [{ position: 70 }]
+  SupplierFullName;
+
+  @UI.lineItem      : [{ position: 80 }]
+  Material;
+
+  @UI.lineItem      : [{ position: 90 }]
+  ProductDescription;
+
+  @UI.lineItem      : [{ position: 100 }]
+  Quantityinentryunit;
+
+  @UI.fieldGroup: [{ qualifier: 'idAdminData', position: 10 }]
+  LocalCreatedBy;
+  @UI.fieldGroup: [{ qualifier: 'idAdminData', position: 20 }]
+  LocalCreatedAt;
+  @UI.fieldGroup: [{ qualifier: 'idAdminData', position: 30 }]
+  LocalLastChangedBy;
+  @UI.fieldGroup: [{ qualifier: 'idAdminData', position: 40 }]
+  LocalLastChangedAt;
+}

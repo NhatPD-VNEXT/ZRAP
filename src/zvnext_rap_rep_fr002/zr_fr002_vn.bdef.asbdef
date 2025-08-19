@@ -1,0 +1,46 @@
+managed;
+strict ( 2 );
+
+define behavior for ZR_FR002_VN alias _header
+implementation in class ZCL_FR002_H_VN unique
+persistent table zfr002_h_vn
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) CompanyCode, FiscalYear, AccountingDocument;
+  association _detail { create; }
+
+  action ( features : instance ) Allocate deep parameter ZR_FR002_ACTION_PARAMETER;
+
+}
+
+define behavior for ZI_FR002_VN alias _detail
+implementation in class ZCL_FR002_D_VN unique
+persistent table zfr002_d_vn
+lock dependent by _header
+authorization dependent by _header
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly : update ) Companycode, Fiscalyear, Rootaccountingdocument;
+  association _header;
+
+  mapping for zfr002_d_vn
+    {
+      Companycode                 = companycode;
+      Fiscalyear                  = fiscalyear;
+      Accountingdocument          = accountingdocument;
+      Rootaccountingdocument      = rootaccountingdocument;
+      Glaccount                   = glaccount;
+      Offsettingaccount           = offsettingaccount;
+      Companycodecurrency         = companycodecurrency;
+      Amountintransactioncurrency = amountintransactioncurrency;
+      Taxcode                     = taxcode;
+      Costcenter                  = costcenter;
+    }
+}

@@ -1,0 +1,9 @@
+abstract;
+strict ( 2 );
+with hierarchy;
+
+define behavior for ZA_FR901_04_VN with control
+{
+  field ( mandatory : execute ) Allocatedmonths;
+  field ( mandatory : execute ) Postingdate;
+}

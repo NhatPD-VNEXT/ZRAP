@@ -1,0 +1,209 @@
+// Behavior definition for Invoice Management
+managed implementation in class zbp_i_mf003_01_vn unique;
+strict ( 2 );
+with draft;
+auxiliary class zbp_i_mf003_02_vn;
+
+// Main Invoice entity behavior definition
+define behavior for ZI_MF003_01_VN alias _Invoice
+persistent table zmf003t_01_vn
+draft table zmf003t_01_d_vn
+lock master
+total etag LastChangedAt
+authorization master ( global, instance )
+etag master LocalLastChangedAt
+//etag master <field_name>
+{
+  // Basic operations
+  create;
+  update ( precheck );
+  delete;
+
+  // Field controls
+  field ( readonly ) LocalCreatedAt, LocalCreatedBy, LastChangedAt, LocalLastChangedAt, LocalLastChangedBy;
+  field ( mandatory ) PostingDate, InvoiceNo;
+  field ( features : instance ) DocumentDate, PostingDate, InvoiceNo;
+  field ( numbering : managed ) InvoiceId;
+
+  // Associations with draft enabled
+  association _Detail { create; with draft; }
+  association _Allocate { create; with draft; }
+
+  // Validations
+  validation validateInvoiceNo on save { create; field InvoiceNo; }
+  validation validatePostingDate on save { create; field PostingDate; }
+
+  // Determinations for data handling
+  determination setDocumentDate on modify { create; }
+
+  // Draft actions for managing draft instances
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized with additional implementation;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare
+  {
+    //    validation validateInvoiceNo;
+    validation validatePostingDate;
+    validation _detail~validateSupplier;
+    validation _detail~validateExpense;
+  }
+
+  //  Side effects definition
+  side effects
+  {
+    entity _Detail affects messages, entity _Allocate, $self, field DocumentDate;
+    action Edit affects messages;
+    action Discard affects messages;
+    determine action Prepare executed on entity _Detail affects messages;
+  }
+
+  // Field mapping to database table
+  mapping for zmf003t_01_vn corresponding
+    {
+      InvoiceId          = invoiceid;
+      InvoiceNo          = invoice_no;
+      PostingDate        = posting_date;
+      DocumentDate       = document_date;
+      LocalCreatedAt     = local_created_at;
+      LocalCreatedBy     = local_created_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LastChangedAt      = last_changed_at;
+    }
+}
+
+// Invoice Detail entity behavior definition
+define behavior for ZI_MF003_02_VN alias _Detail
+//persistent table zmf003t_02_vn
+draft table zmf003t_02_d_vn
+lock dependent by _Invoice
+authorization dependent by _Invoice
+with unmanaged save
+//etag master <field_name>
+{
+  // Basic operations
+  update ( precheck );
+  delete;
+
+  // Field controls
+  field ( readonly ) InvoiceUuitem, InvoiceNo, InvoiceId;
+  field ( readonly ) InvoiceItem;
+
+  field ( numbering : managed )
+  InvoiceUuitem;
+
+  // Association with parent Invoice
+  association _Invoice { with draft; }
+
+  // Determinations for data handling
+  determination createData on modify { create; }
+  determination deleteData on modify { delete; }
+
+  validation validateSupplier on save { create; field Supplier; }
+  validation validateExpense on save { create; field ExpensesCategoryID; }
+
+  // Custom actions
+  action Allocate_01 result [1] $self;
+  action Allocate_02 result [1] $self;
+
+  //   Side effects for actions
+  side effects
+  {
+    action Allocate_01 affects messages, entity _Invoice;
+    action Allocate_02 affects messages, entity _Invoice;
+  }
+
+  //  // Field mapping to database table
+  mapping for zmf003t_02_vn corresponding
+    {
+      InvoiceUuitem         = invoice_uuitem;
+      InvoiceId             = invoiceid;
+      InvoiceNo             = invoice_no;
+      InvoiceItem           = invoice_item;
+      ExpensesCategoryID    = zzvcdid;
+      ExpensesCategoryName  = zzvctxt;
+      Supplier              = supplier;
+      SupplierName          = SupplierName;
+      Purchaseordercurrency = purchaseordercurrency;
+      Amountexpense         = amountexpense;
+      Taxcode               = taxcode;
+      Itemtext              = itemtext;
+      Headertext            = headertext;
+      LocalCreatedAt        = local_created_at;
+      LocalCreatedBy        = local_created_by;
+      LocalLastChangedAt    = local_last_changed_at;
+      LocalLastChangedBy    = local_last_changed_by;
+      LastChangedAt         = last_changed_at;
+    }
+}
+//
+// Allocation entity behavior definition
+define behavior for ZI_MF003_03_VN alias _Allocate
+//persistent table zmf003t_03_vn
+draft table zmf003t_03_d_vn
+lock dependent by _Invoice
+authorization dependent by _Invoice
+with unmanaged save
+{
+  // Basic operations
+  update;
+  delete;
+
+  // Field controls - readonly fields
+  field ( readonly ) Materialdocumentyear, Materialdocument, Materialdocumentitem, InvoiceNo, InvoiceItem, InvoiceId,
+  Product, ProductName, Companycode, PurchaseOrder, PurchaseOrderItem, Quantityinentryunit, Totalgoodsmvtamtincccrcy,
+  Companycodecurrency, ExpensesCategoryID, ExpensesCategoryName, Messagelog, Supplierinvoice, Supplierinvoiceitem;
+
+  //*-< UPD V1.01 (S) >-*
+  field ( numbering : managed ) ProcessId;
+  //*-< UPD V1.01 (E) >-*
+
+  // Association with parent Invoice
+  association _Invoice { with draft; }
+
+  // Custom actions
+  action Create parameter ZA_MF003_01_VN result
+  [1..*] ZA_MF003_01_VN
+
+  {
+    default function GetDefaultsFor_ZA_MF003_01_VN;
+  }
+  action ( precheck ) Cancel result [1] $self;
+
+  // Field mapping to database table
+  mapping for zmf003t_03_vn corresponding
+    {
+
+      //*-< UPD V1.01 (S) >-*
+      ProcessId                = process_uuid;
+      //*-< UPD V1.01 (E) >-*
+      Materialdocument         = materialdocument;
+      Materialdocumentitem     = materialdocumentitem;
+      Materialdocumentyear     = materialdocumentyear;
+      InvoiceUuitem            = invoice_uuitem;
+      InvoiceId                = invoiceid;
+      InvoiceNo                = invoice_no;
+      InvoiceItem              = invoice_item;
+      ExpensesCategoryID       = zzvcdid;
+      ExpensesCategoryName     = zzvctxt;
+      Purchaseordercurrency    = purchaseordercurrency;
+      Amountexpense            = amountexpense;
+      Companycode              = Companycode;
+      PurchaseOrder            = purchaseorder;
+      PurchaseOrderItem        = purchaseorderitem;
+      Product                  = product;
+      ProductName              = productname;
+      Supplierinvoice          = supplierinvoice;
+      Supplierinvoiceitem      = supplierinvoiceitem;
+      Totalgoodsmvtamtincccrcy = totalgoodsmvtamtincccrcy;
+      Companycodecurrency      = companycodecurrency;
+      Quantityinentryunit      = quantityinentryunit;
+      Entryunit                = entryunit;
+      LocalCreatedAt           = local_created_at;
+      LocalCreatedBy           = local_created_by;
+      LocalLastChangedAt       = local_last_changed_at;
+      LocalLastChangedBy       = local_last_changed_by;
+      LastChangedAt            = last_changed_at;
+    }
+}

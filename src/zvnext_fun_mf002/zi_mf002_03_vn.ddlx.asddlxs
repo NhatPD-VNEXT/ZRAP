@@ -1,0 +1,68 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Allocation Result',
+    typeNamePlural: 'Allocation Result'
+  } }
+annotate entity ZI_MF002_03_VN with
+{
+  @UI.facet: [ { id: 'idIdentification', type: #IDENTIFICATION_REFERENCE, label: '按分結果', position: 10}]
+  @UI.identification: [{ position: 10 }]
+  @UI.lineItem      : [{ position: 10 },
+                       { type: #FOR_ACTION, dataAction: 'Create', label: '登録'}]
+  @EndUserText.label: 'Invoice明細No'
+  ReferencedocumentNo;
+  @UI.identification: [{ position: 20 }]
+  @UI.lineItem      : [{ position: 20 },
+                       { type: #FOR_ACTION, dataAction: 'Cancel', label: '取消'}]
+  Materialdocument;
+  @UI.identification: [{ position: 30 }]
+  @UI.lineItem      : [{ position: 30 }]
+  Materialdocumentitem;
+//  @UI.identification: [{ position: 50 }]
+//  @UI.lineItem      : [{ position: 50 }]
+//  @EndUserText.label: 'Invoice明細No'
+//  Referencedocumentitem;
+  @UI.identification: [{ position: 60 }]
+  @UI.lineItem      : [{ position: 60 }]
+  DeliveryDocument;
+  @UI.identification: [{ position: 70 }]
+  @UI.lineItem      : [{ position: 70 }]
+  DeliveryDocumentItem;
+  @UI.identification: [{ position: 80 }]
+  @UI.lineItem      : [{ position: 80 }]
+  Companycode;
+  @UI.identification: [{ position: 90 }]
+  @UI.lineItem      : [{ position: 90 }]
+  Material;
+  @UI.identification: [{ position: 100 }]
+  @UI.lineItem      : [{ position: 100 }]
+  ProductDescription;
+  @UI.identification: [{ position: 120 }]
+  @UI.lineItem      : [{ position: 120 }]
+  @EndUserText.label: '入力単位での数量'
+  Quantityinentryunit;
+  @UI.identification: [{ position: 130 }]
+  @UI.lineItem      : [{ position: 130 }]
+  @EndUserText.label: '諸掛区分'
+  Zzvcdid;
+  @UI.identification: [{ position: 140 }]
+  @UI.lineItem      : [{ position: 140 }]
+  @EndUserText.label: '諸掛区分名称'
+  Zzvctxt;
+  @UI.identification: [{ position: 150 }]
+  @UI.lineItem      : [{ position: 150 }]
+  Totalgoodsmvtamtincccrcy;
+  @UI.identification: [{ position: 160 }]
+  @UI.lineItem      : [{ position: 160 }]
+  Companycodecurrency;
+  @UI.identification: [{ position: 170 }]
+  @UI.lineItem      : [{ position: 170 }]
+  Purchaseordercurrency;
+  @UI.identification: [{ position: 180 }]
+  @UI.lineItem      : [{ position: 180 }]
+  Amountexpense;
+  @UI.identification: [{ position: 190 }]
+  @UI.lineItem      : [{ position: 190 }]
+  Messagelog;
+}

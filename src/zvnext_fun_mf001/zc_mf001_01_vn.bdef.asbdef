@@ -1,0 +1,41 @@
+projection;
+strict ( 2 );
+use draft;
+use side effects;
+
+define behavior for ZC_MF001_01_VN //alias <alias_name>
+{
+  //  use create;
+  use update;
+  use delete;
+
+    use action Edit;
+    use action Activate;
+    use action Discard;
+    use action Resume;
+    use action Prepare;
+
+    use association _detail { create; with draft; }
+    use association _Allocate { create; with draft; }
+
+//  use association _detail { create; }
+//  use association _Allocate { create; }
+}
+
+define behavior for ZC_MF001_02_VN //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _header;
+  use action Allocate_01;
+  use action Allocate_02;
+}
+
+define behavior for ZC_MF001_05_VN //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _header;
+}

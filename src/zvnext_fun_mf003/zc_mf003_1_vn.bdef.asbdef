@@ -1,0 +1,26 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_MF003_1_VN alias _Invoice
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _Detail { create; with draft; }
+}
+
+define behavior for ZC_MF003_2_VN alias _Detail
+{
+  use update;
+  use delete;
+
+  use association _Invoice;
+}

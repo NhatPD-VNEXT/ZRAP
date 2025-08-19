@@ -1,0 +1,15 @@
+managed implementation in class zbp_r_test_cds_export unique;
+strict ( 2 );
+
+define behavior for ZR_TEST_CDS_EXPORT alias _export
+persistent table zpurcncd_file
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+  action Export result [1] zst_export_data;
+}

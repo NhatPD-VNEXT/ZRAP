@@ -1,0 +1,22 @@
+managed implementation in class zbp_i_fr901_03_vn unique;
+strict ( 2 );
+
+define behavior for ZI_FR901_03_VN alias _header
+persistent table zf901t_vn
+lock master
+authorization master ( instance )
+//etag master AccountingDocument
+{
+  create;
+  update;
+  delete;
+  field ( readonly : update ) CompanyCode, FiscalYear, AccountingDocument, LedgerGLLineItem;
+
+  action ( features : instance ) Allocate deep parameter ZA_FR901_04_VN;
+  action ( features : instance ) Post;
+
+
+  side effects
+  { action Allocate affects entity _detail;
+    action Post affects entity _detail; }
+}

@@ -1,0 +1,15 @@
+abstract;
+
+define behavior for ZA_MF003_01_VN //alias <alias_name>
+
+{
+
+field ( mandatory )
+formname,
+PrinterName,
+PrintPosition1,
+PrintPosition2,
+PrintPosition3;
+field ( readonly )
+static_text;
+}

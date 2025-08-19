@@ -1,0 +1,34 @@
+managed implementation in class zbp_r_fr003_data_h_vn unique;
+strict ( 2 );
+
+define behavior for ZR_FR003_DATA_H_VN alias _header
+persistent table zfr003_h_vn
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  //  field ( readonly ) Companycode, Fiscalyear, Accountingdocument;
+
+  mapping for zfr003_h_vn
+    {
+      Companycode                 = companycode;
+      fiscalyear                  = fiscalyear;
+      accountingdocument          = accountingdocument;
+      glaccount                   = glaccount;
+      offsettingaccount           = offsettingaccount;
+      companycodecurrency         = companycodecurrency;
+      amountintransactioncurrency = amountintransactioncurrency;
+      costcenter                  = costcenter;
+      taxcode                     = taxcode;
+      status                      = status;
+      allocatedmonths             = Allocatedmonths;
+      CreatedBy                   = created_by;
+      CreatedAt                   = created_at;
+      LocalLastChangedBy          = local_last_changed_by;
+      LocalLastChangedAt          = local_last_changed_at;
+      LastChangedAt               = last_changed_at;
+    }
+}

@@ -1,0 +1,51 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Data header',
+    typeNamePlural: 'Data header'
+  }
+}
+
+annotate entity ZC_FR002_H_VN with
+{
+  @UI.facet: [
+  {
+    purpose: #HEADER,
+    type: #DATAPOINT_REFERENCE,
+    position: 10,
+    targetQualifier: 'AccountingDocument'
+  },
+  {
+    purpose: #HEADER,
+    type: #DATAPOINT_REFERENCE,
+    position: 20,
+    targetQualifier: 'FiscalYear'
+  },
+  {
+    purpose: #HEADER,
+    type: #DATAPOINT_REFERENCE,
+    position: 30,
+    targetQualifier: 'AmountInTransactionCurrency'
+  },
+    //Excel data
+    {
+      label: 'Data',
+      id: 'Data',
+      type: #LINEITEM_REFERENCE,
+      position: 10,
+      targetElement: '_detail',
+      purpose: #STANDARD
+    }
+   ]
+
+  @UI: { dataPoint:{ title: 'Accounting Document', targetValueElement: 'AccountingDocument' } }
+  @UI.identification: [{ position: 10 }
+                   ,{ type: #FOR_ACTION, dataAction: 'Allocate', label: 'Allocate' }]
+  AccountingDocument;
+
+  @UI: { dataPoint:{ title: 'Fiscal Year', targetValueElement: 'FiscalYear' } }
+  FiscalYear;
+
+  @UI: { dataPoint:{ title: 'Amount', targetValueElement: 'AmountInTransactionCurrency' } }
+  AmountInTransactionCurrency;
+}

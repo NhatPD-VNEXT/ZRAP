@@ -1,0 +1,52 @@
+managed implementation in class zcl_r_mf001_03_vn unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZR_MF001_03_VN alias _header
+persistent table zmf001t_04
+draft table zmf001t_04_d
+//with additional save
+authorization master ( instance, global )
+etag master LocalLastChangedAt
+lock master unmanaged
+total etag LastChangedAt
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  //  field ( readonly ) Materialdocumentyear, Materialdocument, Materialdocumentitem;
+
+  mapping for zmf001t_04 corresponding
+    {
+      Materialdocumentyear  = materialdocumentyear;
+      Materialdocument      = materialdocument;
+      Materialdocumentitem  = materialdocumentitem;
+      Referencedocument     = referencedocument;
+      Material              = material;
+      Supplier              = supplier;
+      Entryunit             = entryunit;
+      Quantityinentryunit   = quantityinentryunit;
+      Companycodecurrency   = companycodecurrency;
+      Deliverydocument      = deliverydocument;
+      Deliverydocumentitem  = deliverydocumentitem;
+      Companycode           = companycode;
+      Createdbyuser         = createdbyuser;
+      Creationdate          = creationdate;
+      Creationtime          = creationtime;
+      Postingdate           = postingdate;
+      Purchaseordercurrency = purchaseordercurrency;
+      Status                = status;
+      LocalCreatedAt        = local_created_at;
+      LocalCreatedBy        = local_created_by;
+      LocalLastChangedAt    = local_last_changed_at;
+      LocalLastChangedBy    = local_last_changed_by;
+      LastChangedAt         = last_changed_at;
+    }
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+}

@@ -1,0 +1,138 @@
+managed implementation in class zcl_i_mf001_01_vn unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_MF001_01_VN alias _header
+persistent table zmf001t_04
+draft table zmf001t_04_d
+with additional save
+authorization master ( instance, global )
+etag master LocalLastChangedAt
+//lock master
+lock master unmanaged
+total etag Referencedocument
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) Materialdocumentyear, Materialdocument, Materialdocumentitem, Referencedocument;
+  association _detail { create; with draft; }
+  association _Allocate { create; with draft; }
+
+//  association _detail { create; }
+//  association _Allocate { create; }
+
+  validation validateAll on save { create; update; }
+  determination createData on modify { create; }
+  determination updateData on modify { update; }
+  determination saveData on save { create; delete; update; }
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  side effects
+  {
+    entity _detail affects entity _allocate;
+  }
+
+  mapping for zmf001t_04 corresponding
+    {
+      Materialdocumentyear     = materialdocumentyear;
+      Materialdocumentitem     = materialdocumentitem;
+      Materialdocument         = Materialdocument;
+      Referencedocument        = Referencedocument;
+      Material                 = material;
+      Supplier                 = supplier;
+      Entryunit                = entryunit;
+      Quantityinentryunit      = quantityinentryunit;
+      Totalgoodsmvtamtincccrcy = totalgoodsmvtamtincccrcy;
+      Companycodecurrency      = companycodecurrency;
+      Deliverydocument         = deliverydocument;
+      Deliverydocumentitem     = deliverydocumentitem;
+      Companycode              = companycode;
+      Createdbyuser            = createdbyuser;
+      Creationdate             = creationdate;
+      Creationtime             = creationtime;
+      Postingdate              = postingdate;
+      Purchaseordercurrency    = purchaseordercurrency;
+      Status                   = status;
+    }
+}
+
+define behavior for ZI_MF001_02_VN alias _detail
+persistent table zmf001t_02
+draft table zmf001t_02_d
+lock dependent by _header
+authorization dependent by _header
+//late numbering
+//etag master <field_name>
+{
+
+  //  create;
+  update;
+  delete;
+  field ( readonly )
+  Referencedocument,
+  Referencedocumentitem,
+  Materialdocument,
+  Materialdocumentitem,
+  Materialdocumentyear;
+  field ( numbering : managed )
+  Referencedocumentitem;
+  association _header;
+
+  determination createData on modify { create; }
+  determination updateData on modify { update; }
+  determination deleteData on modify { delete; }
+  determination saveData on save { create; delete; update; }
+
+  action ( features : instance ) Allocate_01 result [1] $self;
+  action ( features : instance ) Allocate_02 result [1] $self;
+
+
+  side effects
+  {
+    action Allocate_01 affects entity _header;
+    action Allocate_02 affects entity _header;
+  }
+
+  mapping for zmf001t_02 corresponding
+    {
+      Referencedocument     = referencedocument;
+      Referencedocumentitem = referencedocumentitem;
+      Materialdocument      = materialdocument;
+      Materialdocumentitem  = materialdocumentitem;
+      Materialdocumentyear  = materialdocumentyear;
+      Zzvcdid               = zzvcdid;
+      Zzvctxt               = zzvctxt;
+      Supplier              = supplier;
+      Supplierfullname      = supplierfullname;
+      Purchaseordercurrency = purchaseordercurrency;
+      Amountexpense         = amountexpense;
+      Taxcode               = taxcode;
+      Headertext            = headertext;
+      Itemtext              = itemtext;
+    }
+}
+
+define behavior for ZI_MF001_05_VN alias _allocate
+persistent table zmf001t_03
+draft table zmf001t_03_d
+lock dependent by _header
+authorization dependent by _header
+//etag master <field_name>
+
+{
+  update;
+  delete;
+  field ( readonly )
+  Materialdocumentyear,
+  Materialdocument,
+  Materialdocumentitem,
+  Referencedocumentitem,
+  Referencedocument;
+  association _header;
+}

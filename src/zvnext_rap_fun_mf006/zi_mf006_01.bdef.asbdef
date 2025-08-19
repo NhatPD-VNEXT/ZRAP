@@ -1,0 +1,35 @@
+unmanaged implementation in class zbp_i_mf006_01 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_MF006_01 alias _header
+draft table zmf006t_d_01
+lock master
+total etag LastChangedAt
+authorization master ( instance )
+//etag master
+{
+  create;
+  update;
+  delete;
+  field ( readonly : update ) ReferenceDocument, MaterialDocument, MaterialDocumentYear, MaterialDocumentItem;
+  association _detail { create; }
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+}
+
+define behavior for ZI_MF006_02 alias _detail
+draft table zmf006t_d_02
+lock dependent by _header
+authorization dependent by _header
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly : update ) Referencedocumentitem, Referencedocument, MaterialDocument, MaterialDocumentItem, MaterialDocumentYear;
+  association _header;
+}

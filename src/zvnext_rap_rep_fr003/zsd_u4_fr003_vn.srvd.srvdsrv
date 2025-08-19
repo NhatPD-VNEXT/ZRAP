@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition FR003'
+define service ZSD_U4_FR003_VN {
+  expose ZC_FR003_H_VN as FR003_H;
+  expose ZR_FR003_D_VN as FR003_D;
+}

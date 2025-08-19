@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZRAP_COM_001_VN</ARBGB>
+    <MASTERLANG>J</MASTERLANG>
+    <STEXT>Message Class VNEXT</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>000</MSGNR>
+     <TEXT>品目標準原価＆１,品目&amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>項目Field Test Help に有効な値を入力してください</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>項目Test Code List に有効な値を入力してください</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Your account is not allow to change the field &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>BOM &amp;1 was unassigned plant &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>&amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>パラメータ：会社コード=&amp;1、得意先＝&amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>パラメータ：締日=&amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>パラメータ：処理対象締日=&amp;1、処理対象営業日数＝&amp;2、処理対象締日文字=&amp;3</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>支払条件変更対象の得意先がありません</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>検索条件に該当するデータがありません</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>支払条件変更処理でエラーが発生しました。</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>012</MSGNR>
+     <TEXT>支払条件変更処理が正常に終了しました。得意先件数=&amp;1件、明細件数=&amp;2件</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>J</SPRSL>
+     <ARBGB>ZRAP_COM_001_VN</ARBGB>
+     <MSGNR>013</MSGNR>
+     <TEXT>勘定設定カテゴリが「F」の場合、カスタムフィールドの値は編集できません</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

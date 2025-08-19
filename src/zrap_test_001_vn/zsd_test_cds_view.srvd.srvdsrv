@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZSD_TEST_CDS_VIEW'
+define service ZSD_TEST_CDS_VIEW {
+  expose ZC_TEST_CDS_VIEW_02 as Test;
+  expose ZC_TEST_CDS_VIEW_03 as Report;
+  expose ZR_TEST_CDS_EXPORT  as Export;
+}

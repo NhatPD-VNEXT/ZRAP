@@ -1,0 +1,24 @@
+managed implementation in class zbp_i_test_cds_view_02 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_TEST_CDS_VIEW_02 //alias <alias_name>
+//persistent table <???>
+draft table zff001t_01_d_vn
+lock master
+total etag Locallastchangedat
+authorization master ( instance )
+with unmanaged save
+//etag master <field_name>
+{
+  //  create;
+  update;
+  //  delete;
+  field ( readonly ) PaymentRunDate, PaymentRunID, PayingCompanyCode, HouseBank, BankCountry;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+}

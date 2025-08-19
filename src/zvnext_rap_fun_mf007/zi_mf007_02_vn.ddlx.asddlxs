@@ -1,0 +1,56 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: {
+    typeName: 'Detail Information',
+    typeNamePlural: 'Detail Information'
+  }
+}
+
+annotate entity ZI_MF007_02_VN with
+{
+  @UI.facet: [ { id: 'idIdentification', type: #IDENTIFICATION_REFERENCE, label: '明細情報', position: 10}]
+  @UI.lineItem      : [{ position: 10 },
+                       { type: #FOR_ACTION, dataAction: 'Allocate_01', label: '数量按分'},
+                       { type: #FOR_ACTION, dataAction: 'Allocate_02', label: '金額按分' }
+                       ]
+  @UI.selectionField: [{ position: 10 }]
+  @EndUserText.label: 'Invoice明細No'
+  InvoiceItem;
+  @UI.identification: [{ position: 30 }]
+  @UI.lineItem      : [{ position: 30 }]
+  @EndUserText.label: '諸掛区分'
+
+  @Consumption.valueHelpDefinition: [{ entity:{ name: 'ZI_MF003_04_VH_VN', element: 'ExpensesCategoryID'},
+               useForValidation: true,
+               additionalBinding: [{ localElement: 'ExpensesCategoryName', element: 'ExpensesCategoryName', usage: #RESULT },
+                                   { localElement: 'Taxcode', element: 'Taxcode', usage: #RESULT  }] }]
+  ExpensesCategoryID;
+  @UI.lineItem      : [{ position: 40 }]
+  //  @UI.identification: [{ position: 40 }]
+  @EndUserText.label: '諸掛区分名称'
+  ExpensesCategoryName;
+  @UI.lineItem      : [{ position: 50 }]
+  @EndUserText.label: '仕入先'
+  Supplier;
+  @UI.lineItem      : [{ position: 60 }]
+  @EndUserText.label: '仕入先名称1'
+  SupplierName;
+  @UI.lineItem      : [{ position: 70 }]
+  @UI.identification: [{ position: 70 }]
+  @EndUserText.label: '諸掛計上按分金額'
+  Amountexpense;
+  @UI.lineItem      : [{ position: 80 }]
+  //  @UI.identification: [{ position: 80 }]
+  @EndUserText.label: '税コード'
+  Taxcode;
+  @UI.lineItem      : [{ position: 90 }]
+  @UI.identification: [{ position: 90 }]
+  @EndUserText.label: '伝票ヘッダテキスト'
+  Headertext;
+  @UI.lineItem      : [{ position: 100 }]
+  @UI.identification: [{ position: 100 }]
+  @EndUserText.label: '明細テキスト'
+  Itemtext;
+
+}

@@ -1,0 +1,20 @@
+CLASS zcl_testvh_vn DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+    INTERFACES if_rap_query_provider.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS ZCL_TESTVH_VN IMPLEMENTATION.
+
+
+  METHOD if_rap_query_provider~select.
+    CHECK sy-uname = 'CB9980000188'.
+  ENDMETHOD.
+ENDCLASS.

@@ -1,0 +1,11 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Allocate annual cost into 12M',
+    typeNamePlural: 'Allocate annual cost into 12M',
+        description: { type: #STANDARD, label: 'Allocate annual cost into 12M' }
+  }
+}
+annotate entity ZI_FR001_VN with
+{
+}

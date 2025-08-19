@@ -1,0 +1,5 @@
+@EndUserText.label: 'ZSD_U4_MF006'
+define service ZSD_U4_MF006 {
+  expose ZI_MF006_01 as header;
+  expose ZI_MF006_02 as detail;
+}

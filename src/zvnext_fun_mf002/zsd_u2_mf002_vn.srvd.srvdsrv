@@ -1,0 +1,7 @@
+@EndUserText.label: 'ZSD_U2_MF002_VN'
+define service ZSD_U2_MF002_VN {
+  expose ZC_MF002_04_VN    as header;
+  expose ZI_MF002_03_VN    as allocate;
+  expose ZI_MF002_02_VN    as detail;
+  expose ZI_MF002_VH_01_VN as F4;
+}

@@ -1,0 +1,12 @@
+projection;
+strict ( 2 );
+use side effects;
+
+define behavior for ZC_FR003_H_VN //alias <alias_name>
+{
+
+  use update;
+  use action Allocate;
+  use action Post;
+  use action Reverse;
+}

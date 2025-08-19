@@ -1,0 +1,42 @@
+managed implementation in class zbp_i_fr901_02_vn unique;
+strict ( 2 );
+
+define behavior for ZI_FR901_02_VN alias _detail
+persistent table zf901t_d_vn
+lock master
+authorization master ( none )
+//authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) KeyUuid;
+  field ( numbering : managed )
+  KeyUuid;
+
+  mapping for zf901t_d_vn
+    {
+      KeyUuid                      = key_uuid;
+      CompanyCode                  = company_code;
+      FiscalYearBase               = fiscal_year_base;
+      AccountingDocumentBase       = accounting_document_base;
+      FiscalYear                   = fiscal_year;
+      AccountingDocument           = accounting_document;
+      PostingDate                  = posting_date;
+      GlaccountS                   = glaccount_s;
+      GlaccountNameS               = glaccount_name_s;
+      GlaccountH                   = glaccount_h;
+      GlaccountNameH               = glaccount_name_h;
+      AmountingTransactionCurrency = amounting_transaction_currency;
+      CompanyCodeCurrency          = company_code_currency;
+      HeaderText                   = header_text;
+      Costcenter                   = costcenter;
+      Taxcode                      = taxcode;
+      CreatedAt                    = created_at;
+      CreatedBy                    = created_by;
+      LocalLastChangedAt           = local_last_changed_at;
+      LocalLastChangedBy           = local_last_changed_by;
+      LastChangedAt                = last_changed_at;
+    }
+}

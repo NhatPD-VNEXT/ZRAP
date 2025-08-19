@@ -1,0 +1,44 @@
+managed implementation in class zbp_i_mf007_01_vn unique;
+strict ( 2 );
+
+define behavior for ZI_MF007_01_VN //alias <alias_name>
+persistent table zmf007t_01_vn
+lock master
+authorization master ( instance )
+early numbering
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) InvoiceId;
+
+  //  field ( numbering : managed ) InvoiceId;
+
+  association _Detail { create; }
+  association _Allocate { create; }
+}
+
+define behavior for ZI_MF007_02_VN //alias <alias_name>
+persistent table zmf007t_02_vn
+lock dependent by _Invoice
+authorization dependent by _Invoice
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) InvoiceUuitem, InvoiceId;
+  association _Invoice;
+}
+
+define behavior for ZI_MF007_03_VN //alias <alias_name>
+persistent table zmf007t_03_vn
+lock dependent by _Invoice
+authorization dependent by _Invoice
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) ProcessUuid, Invoiceid;
+  association _Invoice;
+}

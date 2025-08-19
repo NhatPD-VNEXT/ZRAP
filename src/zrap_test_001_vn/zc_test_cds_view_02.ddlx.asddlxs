@@ -1,0 +1,84 @@
+@Metadata.layer: #CORE
+@UI: {
+    headerInfo: {
+        typeName: '支払ファイル',
+        typeNamePlural: '支払ファイル'
+    } }
+annotate entity ZC_TEST_CDS_VIEW_02 with
+{
+  @UI.facet: [
+       {
+           id: 'PaymentRunDate',
+           purpose: #HEADER,
+           type: #DATAPOINT_REFERENCE,
+           position: 10,
+           targetQualifier: 'PaymentRunDate'
+       },
+       {
+           id: 'PaymentRunID',
+           purpose: #HEADER,
+           type: #DATAPOINT_REFERENCE,
+           position: 20,
+           targetQualifier: 'PaymentRunID'
+        },
+       {
+           id: 'PaytAmountInCoCodeCurrency',
+           purpose: #HEADER,
+           type: #DATAPOINT_REFERENCE,
+           position: 30,
+           targetQualifier: 'PaytAmount'
+        } ,
+        {
+      label: '情報',
+      id: 'GeneralInfo',
+      type: #IDENTIFICATION_REFERENCE,
+      position: 10
+    },
+     {
+      id: 'PaymentDoc',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: '支払概要',
+      position: 20,
+      targetElement: '_PaymentDoc'
+    }
+   ]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.lineItem: [{ position: 10 }]
+  @UI.dataPoint: { qualifier: 'PaymentRunDate'}
+  @Consumption.filter:{ selectionType: #INTERVAL }
+  PaymentRunDate;
+  @UI.selectionField: [{ position: 20 }]
+  @UI.lineItem: [{ position: 20 }]
+  @UI.dataPoint: { qualifier: 'PaymentRunID'}
+  PaymentRunID;
+  @UI.selectionField: [{ position: 30 }]
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 10 }]
+  PayingCompanyCode;
+  @UI.hidden: true
+  CompanyCodeName;
+  @EndUserText.label: '国内通貨支払額'
+  @UI.lineItem: [{ position: 50}]
+  @UI.dataPoint: { qualifier: 'PaytAmount' , criticality: 'PaytAmountInCoCodeCurrency', title: '支払額'  }
+  PaytAmountInCoCodeCurrency;
+  @UI.hidden: true
+  CompanyCodeCurrency;
+  @UI.lineItem: [{ position: 80 }]
+  @UI.identification: [{ position: 20 }]
+  HouseBank;
+  @UI.hidden: true
+  BankName;
+  @UI.hidden: true
+  HouseBankAccount;
+  @UI.selectionField: [{ position: 40 }]
+  @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 30 }]
+  BankCountry;
+  @UI.identification: [{ position: 40, label: '支払期日' }]
+  PaymentDueDate;
+  @UI.identification: [{ position: 50 ,label: '当座貸越可能日'}]
+  PayBaseLineDate;
+  @UI.hidden: true
+  _PaymentDoc;
+}
